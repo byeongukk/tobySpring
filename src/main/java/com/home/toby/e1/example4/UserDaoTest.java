@@ -1,12 +1,13 @@
-package com.home.toby.example1;
+package com.home.toby.e1.example4;
 
 import java.sql.SQLException;
 
 //테스트를 위한 mainClass
-public class Main {
+public class UserDaoTest {
 	
 	public static void main(String args[]) throws ClassNotFoundException, SQLException {
-		UserDao dao = new UserDao();
+		
+		UserDao dao = new DaoFactory().userDao();
 		
 		User user = new User();
 		user.setId("uukk");

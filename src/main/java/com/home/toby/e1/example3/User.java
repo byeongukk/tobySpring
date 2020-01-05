@@ -1,4 +1,4 @@
-package com.home.toby.example2;
+package com.home.toby.e1.example3;
 
 public class User {
 	//1-1 사용자 정보 저장용 자바빈 User Class

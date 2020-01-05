@@ -1,4 +1,4 @@
-package com.home.toby.example2;
+package com.home.toby.e1.example1;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package com.home.toby.example1;
+package com.home.toby.e1.example1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

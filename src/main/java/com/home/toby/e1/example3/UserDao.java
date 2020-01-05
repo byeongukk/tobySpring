@@ -1,18 +1,24 @@
-package com.home.toby.example2;
+package com.home.toby.e1.example3;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //사용자 정보를 DB에 넣고 관리할 수 있는 DAO 클래스
 public class UserDao {
+	private ConnectionMaker connectionMaker;
+	
+	public UserDao(ConnectionMaker connectionMaker) {
+		//상태를 관리하는 것도 아니니 한 번만 만들어 인스턴스 변수에 저장해두고
+		//메소드에서 사용하게된다.
+		this.connectionMaker = connectionMaker;
+	}
 	
 	//
 	public void add(User user) throws ClassNotFoundException, SQLException {
 		//DB 연결
-		Connection c = getConnection();
+		Connection c = connectionMaker.makeConnection();
 		
 		//쿼리
 		PreparedStatement ps = c.prepareStatement(
@@ -28,7 +34,7 @@ public class UserDao {
 	public User get(String id ) throws ClassNotFoundException, SQLException {
 
 			//DB 연결
-			Connection c = getConnection();
+			Connection c = connectionMaker.makeConnection();
 			
 			PreparedStatement ps = c.prepareStatement("SELECT * FROM USERS WHERE ID = ?");
 			ps.setString (1 , id);
@@ -43,16 +49,7 @@ public class UserDao {
 			c.close();
 			return user;
 	}
+		
 	
-	
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		
-		Connection c = 
-				DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","TOBY","TOBY");
-		
-		return c;
-		
-	}
 }
 
